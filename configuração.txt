@@ -1,0 +1,2 @@
+        git config --global user.name Vitinho-sys
+git config --global user.email Vitorkaua80cc@gmail.com

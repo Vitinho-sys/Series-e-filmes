@@ -3,7 +3,7 @@ const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: 'bearer 80c145a94ee5ac2243f5a20bdb48c7dd'
+        Authorization: 'bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MGMxNDVhOTRlZTVhYzIyNDNmNWEyMGJkYjQ4YzdkZCIsIm5iZiI6MTc0NDMzMTUyMS40NzQsInN1YiI6IjY3Zjg2MzAxMzE3NzUyNzZkNmQ5Y2Y4MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.P8L5ha8n3cajOv1yT-NZQaLr78XTVNMau-pDdJWDx_A'
     }
 };
 
@@ -18,9 +18,9 @@ function toggleLoading() {
  window.addEventListener("scroll", function() {
     const navbar = document.querySelector(".navbar");
     
-    if (this.window.scrolly > 50) {
+    if (window.scrolly > 50) {
         navbar.classList.add("scrolled");
     } else {
         navbar.classList.remove("scrolled")
     }
- })
+ });

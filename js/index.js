@@ -1,11 +1,13 @@
 //Ao carregar a página executa as funções de buscar os dados
-
 document.addEventListener("DOMContentLoaded", async () => {
+    setTimeout(() => {
+        toggleLoading();
+    }, 2000);
   await banner();
   await trendingMovies();
   await topRatedMovies();
   toggleLoading();
-});
+  });
 
 async function banner() {
     let trendings = [];
@@ -33,11 +35,11 @@ async function banner() {
 }
 
 async function trendingMovies() {
-    let trending = [];
+    let trendings = [];
     await fetch('https://api.themoviedb.org/3/trending/movie/day?language=pt-BR', options)
     .then(res => res.json())
     .then(res => res.results.forEach(movie => {
-        trending.push(movie);
+        trendings.push(movie);
     }))
     .catch(err => console.error(err));
 
@@ -45,7 +47,7 @@ let trendingContainer = document.querySelector('#trendingMovies');
 trendingContainer.innerHTML = '';
 for (let i = 0; i < trendings.length; i++) {
     trendingContainer.innerHTML +=
-    `<a href='detalhes.html?id${trendings[i].id}&media=${trendings[i].media_type}'>
+    `<a href='detalhes.html?id=${trendings[i].id}&media=${trendings[i].media_type}'>
         <img src="https://image.tmdb.org/t/p/original/${trendings[i].poster_path}" alt="">
         </a>`
     }
@@ -66,7 +68,7 @@ topRatedContainer.innerHTML = '';
 for (let i = 0; i < toprated.length; i++) {
     topRatedContainer.innerHTML +=
     `<a href='detalhes.html?id=${toprated[i].id}&media=movie'>
-        <img src-"https://image.tmdb.org/t/p/original/${toprated[i].poster_path}" alt="">
+        <img src="https://image.tmdb.org/t/p/original/${toprated[i].poster_path}" alt="">
     </a>`
    }
 }

@@ -181,5 +181,5 @@ function excluirPerfil() {
     let icons = document.querySelectorAll('.icon');
     icons.forEach(icon => {'flex';
     });
-    exibirPainelPerfil
+    exibirPainelPerfil();
 }

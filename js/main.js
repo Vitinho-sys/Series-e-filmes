@@ -1,3 +1,12 @@
+//API key
+const options = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+        Authorization: 'bearer 80c145a94ee5ac2243f5a20bdb48c7dd'
+    }
+};
+
 // Exibir loading
 function toggleLoading() {
     let loader = document.querySelector(".loader")

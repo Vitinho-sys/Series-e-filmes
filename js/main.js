@@ -1,26 +1,43 @@
-//API key
+// API key
 const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: 'bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MGMxNDVhOTRlZTVhYzIyNDNmNWEyMGJkYjQ4YzdkZCIsIm5iZiI6MTc0NDMzMTUyMS40NzQsInN1YiI6IjY3Zjg2MzAxMzE3NzUyNzZkNmQ5Y2Y4MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.P8L5ha8n3cajOv1yT-NZQaLr78XTVNMau-pDdJWDx_A'
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiODM1YzQyOGM5MjVkMzAyNzBhYThjZDhjNjk1YjI0ZiIsIm5iZiI6MTc0MjQyNDU5Ni43MjMsInN1YiI6IjY3ZGI0YTE0MDg3NDllZmUzNGU3ODk2ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GiUEsVzQgak9VlHrGtGAN_Q7KvCbEzoZGe8KQoru7Oo'
     }
-};
-
-// Exibir loading
-function toggleLoading() {
-    let loader = document.querySelector(".loader")
+  };
+  
+  
+  // Exibir loading
+  function toggleLoading() {
+    let loader = document.querySelector(".loader");
     loader.style.display = loader.style.display == "none" ? "block" : "none";
- }
-
- // Page Scrool
-
- window.addEventListener("scroll", function() {
+  }
+  
+  
+  // Page Scroll
+  window.addEventListener("scroll", function () {
     const navbar = document.querySelector(".navbar");
-    
-    if (window.scrolly > 50) {
-        navbar.classList.add("scrolled");
+  
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
     } else {
-        navbar.classList.remove("scrolled")
+      navbar.classList.remove("scrolled");
     }
- });
+  });
+  
+  
+  // Formatar Data
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+  
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+  
+    return [day, month, year].join('/');
+  }

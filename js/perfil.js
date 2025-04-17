@@ -3,31 +3,31 @@ let emEdicao = false;
 let perfilEdicao = null;
 
 function inicializarDados() {
-    let dados = JSON.parse(localStorage.getItem("vitkaplus-users"));
+    let dados = JSON.parse(localStorage.getItem("galloflix-users"));
     if (dados === null) {
         dados = [
             {
-                nome: "Vitor",
+                nome: "Gallo",
                 avatar: "img/users/avatar.png",
                 crianca: false
             },
             {
-                nome: "Laís",
+                nome: "Capitão",
                 avatar: "img/users/avatar4.png",
                 crianca: false
             },
             {
-                nome: "Nicoly",
+                nome: "Trizóio",
                 avatar: "img/users/avatar5.png",
-                crianca: false
+                crianca: true
             }
         ];
-        localStorage.setItem("vitkaplus-users", JSON.stringify(dados));
+        localStorage.setItem("galloflix-users", JSON.stringify(dados));
     }
     perfis = dados;
 }
 
-//Ao carregar a página executa as funções de buscar os dados
+// Ao carregar a página executa as funções de buscar os dados
 document.addEventListener("DOMContentLoaded", async () => {
     carregarPerfis();
     toggleLoading();
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     let icons = document.querySelectorAll('.icon');
     icons.forEach(icon => {
-        icon.style.display = 'none'; 
+        icon.style.display = 'none';
     })
 });
 
@@ -50,25 +50,25 @@ function carregarPerfis() {
     cards.innerHTML = '';
     perfis.forEach(perfil => {
         cards.innerHTML +=
-    `<div class="card rounded-4">
-        <a href="#" class="text-decoration-none" onclick="redirecionarPagina('${perfil.nome}')">
-            <div id="profile-image" class="position-relative rounded-4">
-                <img src="${perfil.avatar}" alt="Avatar" class="img-fluid rounded-4">
-                <i class="icon bi bi-pencil-fill"></i>
-            </div>
-            <p class="text-secondary text-center mt-2 fs-5 mb-0">${perfil.nome}</p>
-        </a>
-    </div>`;
+            `<div class="card rounded-4">
+                <a href="#" class="text-decoration-none" onclick="redirecionarPagina('${perfil.nome}')">
+                    <div id="profile-image" class="position-relative rounded-4">
+                        <img src="${perfil.avatar}" alt="Avatar" class="img-fluid rounded-4">
+                        <i class="icon bi bi-pencil-fill"></i>
+                    </div>
+                    <p class="text-secondary text-center mt-2 fs-5 mb-0">${perfil.nome}</p>
+                </a>
+            </div>`;
     });
     cards.innerHTML +=
-    `<div class="card rounded-4">
-        <a data-bs-toggle="modal" data-bs-target="#addPerfil"
-            class="text-decoration-none d-flex flex-column flex-fill">
-            <i
-                class='bx bxs-plus-circle rounded-4 d-flex justify-content-center align-itemns-center flex-fill'></i>
-            <p class="text-secondary text-center mt-2 fs-5 mb-0">Adicionar perfil</p>
-        </a>
-    </div>`;
+        `<div class="card rounded-4">
+            <a data-bs-toggle="modal" data-bs-target="#addPerfil"
+                class="text-decoration-none d-flex flex-column flex-fill">
+                <i
+                    class='bx bxs-plus-circle rounded-4 d-flex justify-content-center align-items-center flex-fill'></i>
+                <p class="text-secondary text-center mt-2 fs-5 mb-0">Adicionar perfil</p>
+            </a>
+        </div>`;
 }
 
 function adicionarPerfil() {
@@ -78,7 +78,7 @@ function adicionarPerfil() {
         crianca: document.getElementById('Crianca').checked,
     }
     perfis.push(perfil);
-    localStorage.setItem("vitkaplus-users", JSON.stringify(perfis));
+    localStorage.setItem("galloflix-users", JSON.stringify(perfis));
     document.getElementById('Nome').value = '';
     document.getElementById('Crianca').checked = false;
     document.querySelector('.btn-close').click();
@@ -97,7 +97,7 @@ function gerenciarPerfil() {
         button.classList.remove('gerenciando');
         button.classList.add('gerenciar');
     } else {
-        button.innerText = 'Concluido';
+        button.innerText = 'Concluído';
         button.classList.add('gerenciando');
         button.classList.remove('gerenciar');
     }
@@ -109,8 +109,8 @@ function exibirEdicaoPerfil(perfil) {
     divPerfis.classList.remove('d-flex');
     divPerfis.classList.add('d-none');
     let divEdicao = document.querySelector('.edicao');
-    divEdicao.classList.remove('d-flex');
-    divEdicao.classList.add('d-none');
+    divEdicao.classList.remove('d-none');
+    divEdicao.classList.add('d-flex');
     let p = perfis.find(o => o.nome == perfil);
     perfilEdicao = perfis.indexOf(p);
     document.querySelector('#avatar').src = p.avatar;
@@ -125,15 +125,15 @@ function exibirExcluirPerfil(perfil) {
     divEdicao.classList.remove('d-flex');
     divEdicao.classList.add('d-none');
     let divExcluir = document.querySelector('.excluir');
-    divExcluir.classList.remove('d-flex');
-    divExcluir.classList.add('d-none');
+    divExcluir.classList.remove('d-none');
+    divExcluir.classList.add('d-flex');
     let p = perfis.find(o => o.nome == perfil);
     perfilEdicao = perfis.indexOf(p);
-    document.querySelector('#avatar').src = p.avatar;
-    document.querySelector('#nomeEdicao').value = p.nome;
+    document.querySelector('#avatarExcluir').src = p.avatar;
+    document.querySelector('#nomeExcluir').value = p.nome;
 }
 
-function exibirPainelPerfil(perfil) {
+function exibirPainelPerfil() {
     let divEdicao = document.querySelector('.edicao');
     divEdicao.classList.remove('d-flex');
     divEdicao.classList.add('d-none');
@@ -141,8 +141,8 @@ function exibirPainelPerfil(perfil) {
     divExcluir.classList.remove('d-flex');
     divExcluir.classList.add('d-none');
     let divPerfis = document.querySelector('.perfis');
-    divPerfis.classList.remove('d-flex');
-    divPerfis.classList.add('d-none');
+    divPerfis.classList.remove('d-none');
+    divPerfis.classList.add('d-flex');
 }
 
 function redirecionarPagina(perfil) {
@@ -165,7 +165,7 @@ function atualizarPerfil() {
         crianca: perfis[perfilEdicao].crianca,
     }
     perfis[perfilEdicao] = perfil;
-    localStorage.setItem("vitkaplus-users", JSON.stringify(perfis));
+    localStorage.setItem("galloflix-users", JSON.stringify(perfis));
     carregarPerfis();
     let icons = document.querySelectorAll('.icon');
     icons.forEach(icon => {
@@ -176,10 +176,11 @@ function atualizarPerfil() {
 
 function excluirPerfil() {
     perfis.splice(perfilEdicao, 1);
-    localStorage.setItem("vitkaplus-users", JSON.stringify(perfis));
+    localStorage.setItem("galloflix-users", JSON.stringify(perfis));
     carregarPerfis();
     let icons = document.querySelectorAll('.icon');
-    icons.forEach(icon => {'flex';
+    icons.forEach(icon => {
+        icon.style.display = 'flex';
     });
     exibirPainelPerfil();
 }
